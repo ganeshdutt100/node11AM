@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-fs.readFile("file1.txt", "utf8", (err, data) => {
+fs.readFile("file2.txt", "utf8", (err, data) => {
   if (err) {
     console.error(err);
     return;
@@ -9,7 +9,7 @@ fs.readFile("file1.txt", "utf8", (err, data) => {
 });
 
 //
-// fs.writeFile("file1.txt", "Hello ", (err) => {
+// fs.writeFile("file2.txt", "Hello Node.js ", (err) => {
 //   //   if (err) throw err;
 //   if (err) {
 //     console.error(err);
