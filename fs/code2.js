@@ -30,10 +30,18 @@ const fs = require("fs");
 //   console.log("File Renamed");
 // });
 
-fs.unlink("userInfo.txt", (err) => {
-  if (err) {
-    console.error(err);
-    return;
-  }
-  console.log("File Deleted");
-});
+// fs.unlink("userInfo.txt", (err) => {
+//   if (err) {
+//     console.error(err);
+//     return;
+//   }
+//   console.log("File Deleted");
+// });
+
+// fs.mkdir("example", (err) => {
+//   if (err) {
+//     console.error(err);
+//     return;
+//   }
+//   console.log("Created ");
+// });
