@@ -14,7 +14,7 @@ const server = http.createServer((req, res) => {
   </head>
   
   <body>
-      <form action="/submit" >
+      <form action="/submit" method="POST" >
           <label>Enter your name : </label>
           <input type="text" placeholder="Ganesh Dutt"> <br> <br>
   
