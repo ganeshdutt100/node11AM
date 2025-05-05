@@ -81,6 +81,21 @@ const userRequestHandler = (req, res) => {
               `);
     return res.end();
   } else if (req.url === "/submit" && req.method === "POST") {
+    const body = [];
+    req.on("data", (chunk) => {
+      body.push(chunk);
+      console.log(body);
+    });
+
+    req.on("end", () => {
+      const parsedBody = body.toString();
+      console.log(parsedBody);
+
+      const params = new URLSearchParams(parsedBody);
+      const bodyObject = Object.fromEntries(params);
+      console.log(bodyObject);
+    });
+
     res.setHeader("Content-Type", "text/html");
     res.write(`
         <html>
