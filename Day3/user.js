@@ -1,3 +1,4 @@
+const fs = require("fs");
 const userRequestHandler = (req, res) => {
   res.setHeader("Content-Type", "text/html");
   if (req.url === "/") {
@@ -79,21 +80,36 @@ const userRequestHandler = (req, res) => {
             </body>
           </html>
               `);
+
     return res.end();
   } else if (req.url === "/submit" && req.method === "POST") {
     const body = [];
+
+    // demo start
+    // let arr = [12, 3, 4, 567, 8, 8];
+    // arr.push("Ganesh")
+    // arr.map((x) =>{ x + 2});
+    // console.log(arr);
+    // 4398493984388493848  9 = >  String  buffer
+    //  let name =  "ganesh" + "dutt";
+    // demo end
+
     req.on("data", (chunk) => {
       body.push(chunk);
       console.log(body);
     });
 
     req.on("end", () => {
-      const parsedBody = body.toString();
+      // const parsedBody = body.toString();
+      const parsedBody = Buffer.concat(body).toString();
       console.log(parsedBody);
 
       const params = new URLSearchParams(parsedBody);
       const bodyObject = Object.fromEntries(params);
       console.log(bodyObject);
+      // console
+      // fs
+      // write('path' ,bodyObject )
     });
 
     res.setHeader("Content-Type", "text/html");

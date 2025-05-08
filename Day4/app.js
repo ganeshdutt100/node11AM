@@ -8,6 +8,11 @@ const server = http.createServer((req, res) => {
   res.write(
     `<h1>Hello, World!</h1><p>This is a simple Node.js application.</p> <p>hello</p> 
      <h1>hello</h1>
+     <p>NPM</p>
+     <p>NPM init</p>
+     <p>NPM init -y</p>
+     <p>NPM i nodemon</p>
+     <p>NPM i nodemon start</p>
     `
   );
 });
