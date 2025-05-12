@@ -1,5 +1,6 @@
 import inquirer from "inquirer";
 import qr from "qr-image";
+// const fs  = require('fs')
 import fs from "fs";
 
 inquirer
