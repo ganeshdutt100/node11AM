@@ -2,14 +2,136 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header & Navigation */
+        header {
+            height: 100vh;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px 50px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #222;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            /* margin-top: 50px; */
+            color: #fff;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .cta-btn {
+            background: #fff;
+            color: #00c6ff;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 30px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .cta-btn:hover {
+            background: #222;
+            color: #fff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                flex-direction: row;
+                gap: 15px;
+                margin-top: 10px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Welcome to Home Page</h1>
-    <button><a href="">Click me </a></button>
+    <header>
+        <nav>
+            <div class="logo">MyBrand</div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="hero">
+            <h1>Welcome to My Landing Page</h1>
+            <p>Your journey to amazing experiences starts here.</p>
+            <a href="/form" class="cta-btn">Get Started</a>
+        </div>
+    </header>
 </body>
 
 </html>

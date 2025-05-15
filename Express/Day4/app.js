@@ -3,10 +3,12 @@ const app = express();
 const PORT = 3007;
 
 // local Modules
-const formsRouter = require("./routes/formsRouter");
+const homeRouter = require("./routes/homeRouter");
+const formsRouter = require("./routes/formRoutes");
 
 app.use(express.urlencoded());
 
+app.use(homeRouter);
 app.use(formsRouter);
 
 app.listen(PORT, () => {
