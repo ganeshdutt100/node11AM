@@ -6,7 +6,7 @@ formRouter.get("/form", (req, res) => {
   res.sendFile(path.join(__dirname, "../view/form.html"));
 });
 formRouter.post("/form", (req, res) => {
-  console.log(req.body);
+  console.log(req.url, req.body);
 
   res.sendFile(path.join(__dirname, "../view/userPageShow.html"));
 });
