@@ -9,17 +9,30 @@
 
 <body>
     <input type="text" class="inputData">
-    <button>Click me </button>
-    <div>loading.....
- img  - String name 
-        <img src="" alt="">
-    </div>
+    <button onclick="generateQR()">Generate Qr </button>
+    <div class="qrCodeImage"></div>
 
 
     <script>
         const input = document.querySelector('.inputData');
         const button = document.querySelector('button');
-        const div = document.querySelector('div');
+        const qrCodeImage = document.querySelector('.qrCodeImage');
+
+        async function generateQR() {
+            const url = input.value;
+            if (!url) {
+                alert('Please enter a valid URL');
+                return;
+            }
+
+
+            const response = await fetch(`http://localhost:3000/QrCode?url=${encodeURIComponent(url)}`);
+
+            let data = await response.json();
+
+            qrCodeImage.innerHTML = `<img src="${data.qr}">`
+
+        }
     </script>
 </body>
 
