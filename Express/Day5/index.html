@@ -5,32 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
 </head>
 
 <body>
-    <input type="text" class="inputData">
-    <button onclick="generateQR()">Generate Qr </button>
-    <div class="qrCodeImage"></div>
-
+    <input type="text" id="urlInput">
+    <button onclick="generateQR()">Generate QR</button>
+    <div id="qrCode"></div>
 
     <script>
-        const input = document.querySelector('.inputData');
-        const button = document.querySelector('button');
-        const qrCodeImage = document.querySelector('.qrCodeImage');
-
         async function generateQR() {
-            const url = input.value;
+            const url = document.getElementById('urlInput').value;
             if (!url) {
-                alert('Please enter a valid URL');
+                alert('Please enter a URL');
                 return;
             }
+            const response = await fetch(`http://localhost:3000/generate?url=${encodeURIComponent(url)}`);
 
+            const data = await response.json();
 
-            const response = await fetch(`http://localhost:3000/QrCode?url=${encodeURIComponent(url)}`);
-
-            let data = await response.json();
-
-            qrCodeImage.innerHTML = `<img src="${data.qr}">`
+            document.getElementById('qrCode').innerHTML = `<img src="${data.qr}" alt="QR Code" />`;
 
         }
     </script>
