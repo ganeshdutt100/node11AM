@@ -2,27 +2,32 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feedback App</title>
+    <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
-    <form action="/submit-feedback" method="POST">
-        <input type="text" placeholder="Name" name="name" required> <br> <br>
-        <textarea class="feedback" name="message"></textarea> <br> <br>
-        <button type="submit">Submit</button>
-    </form>
-    <h1>Feedbacks Data</h1>
-    <ul id=" feedbacksData"></ul>
+    <div class="container">
+        <h1>Feedback Form</h1>
+        <form action="/submit-feedback" method="POST">
+            <input type="text" name="name" placeholder="Your name" required />
+            <textarea name="message" placeholder="Your feedback" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
 
+        <h2>All Feedbacks</h2>
+        <ul id="feedbacksData"></ul>
+    </div>
 
     <script>
         fetch('/api/feedbacks')
             .then(res => res.json())
             .then(data => {
-                let list = document.getElementById('feedbacksData');
-                list.innerHTML = data.map(f => `<li>${f.name} : ${f.message}</li>`).join("");
+                const list = document.getElementById('feedbacksData');
+                list.innerHTML = data.map(f => `<li><strong>${f.name}:</strong> ${f.message}</li>`).join("");
             });
     </script>
 </body>
