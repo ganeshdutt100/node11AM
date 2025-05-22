@@ -9,7 +9,7 @@ formRouter.get("/form", (req, res) => {
 formRouter.post("/form", (req, res) => {
   console.log(req.url, req.body);
 
-  res.sendFile(path.join(filePath, "view", "userPageShow.html"));
+  res.sendFile(path.join(__dirname, "../view/userPageShow.html"));
 });
 
 module.exports = formRouter;

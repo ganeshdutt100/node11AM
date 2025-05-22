@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="/submit-feedback" method="POST">
+        <input type="text" placeholder="Name" name="name" required> <br> <br>
+        <textarea class="feedback" name="message"></textarea> <br> <br>
+        <button type="submit">Submit</button>
+    </form>
+    <h1>Feedbacks Data</h1>
+    <ul id=" feedbacksData"></ul>
+
+
+    <script>
+        fetch('/api/feedbacks')
+            .then(res => res.json())
+            .then(data => {
+                let list = document.getElementById('feedbacksData');
+                list.innerHTML = data.map(f => `<li>${f.name} : ${f.message}</li>`).join("");
+            });
+    </script>
+</body>
+
+</html>
