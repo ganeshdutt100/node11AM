@@ -5,11 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input,
+        button {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        #timer {
+            font-weight: bold;
+        }
+
+        .expired {
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>OTP</h1>
-    <button class="generate-btn ">Generate OTP</button>
+    <h1>OTP Generate And Verify</h1>
+    <button id="generate-btn">Generate OTP</button>
     <div id="OTP"></div>
     <div id="timer">TIME: -- </div>
 
@@ -19,6 +44,50 @@
     </div>
 
     <div id="verify_msg"></div>
+
+    <script>
+        let GeneratedOTP = '';
+        let interval;
+        let isExpired = false;
+
+        function startTimer(second) {
+            clearInterval(interval);
+            isExpired = false;
+            timeLeft = second;
+
+            interval = setInterval(() => {
+
+                const timer = document.document.querySelector('#timer');
+
+                if (timeLeft > 0) {
+                    timer.innerHTML = `TIME: ${timeLeft} seconds`;
+                } else {
+                    clearInterval(interval);
+
+                    timer.innerHTML = 'Expired';
+                    isExpired = true;
+
+                }
+
+                timeLeft--;
+            }, 1000)
+        }
+
+
+        document.querySelector("#generate-btn").addEventListener('click', () =>{
+            fetch('/api/data')
+            .then(response => response.json())
+            .then(data => {
+                GeneratedOTP = data.otp;
+                document.querySelector('#OTP').innerHTML = `Generated OTP: ${GeneratedOTP}`;
+                document.querySelector('#verify-section').style.display = 'block';
+                startTimer(30);
+            })
+        })
+
+     
+
+    </script>
 </body>
 
 </html>
