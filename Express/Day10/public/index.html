@@ -31,61 +31,88 @@
         }
     </style>
 </head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>OTP Generator & Verify</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input,
+        button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+
+        .expired {
+            color: red;
+        }
+
+        #timer {
+            font-weight: bold;
+        }
+    </style>
+</head>
 
 <body>
-    <h1>OTP Generate And Verify</h1>
+    <h1>OTP Generator & Verify</h1>
     <button id="generate-btn">Generate OTP</button>
-    <div id="OTP"></div>
-    <div id="timer">TIME: -- </div>
 
-    <div style="display: none;" id="verify-section">
-        <input type="text">
-        <button id="">Verify OTP</button>
+    <div id="otp"></div>
+    <div id="timer">Timer: --</div>
+
+    <div id="verify-section" style="display: none;">
+        <input type="text" id="otp-input" placeholder="Enter OTP" />
+        <button id="verify-btn">Verify OTP</button>
     </div>
 
-    <div id="verify_msg"></div>
+    <div id="verify-msg"></div>
 
     <script>
-        let GeneratedOTP = '';
+        let generatedOTP = "";
         let interval;
         let isExpired = false;
 
-        function startTimer(second) {
+        function startTimer(seconds) {
             clearInterval(interval);
             isExpired = false;
-            timeLeft = second;
+            let timeLeft = seconds;
 
             interval = setInterval(() => {
-
-                const timer = document.document.querySelector('#timer');
-
+                const timer = document.getElementById("timer");
                 if (timeLeft > 0) {
-                    timer.innerHTML = `TIME: ${timeLeft} seconds`;
+                    timer.textContent = `Time left: ${timeLeft}s`;
+                    timer.classList.remove("expired");
                 } else {
                     clearInterval(interval);
-
-                    timer.innerHTML = 'Expired';
+                    timer.textContent = "Expired";
+                    timer.classList.add("expired");
                     isExpired = true;
-
                 }
-
                 timeLeft--;
-            }, 1000)
+            }, 1000);
         }
 
+        document.getElementById("generate-btn").addEventListener("click", () => {
+            fetch("/api/otp")
+                .then(res => res.json())
+                .then(data => {
+                    generatedOTP = data.otp;
+                    document.getElementById("otp").textContent = `OTP: ${generatedOTP}`;
+                    document.getElementById("verify-msg").textContent = "";
+                    document.getElementById("verify-section").style.display = "block";
+                    startTimer(30);
+                });
+        });
 
-        document.querySelector("#generate-btn").addEventListener('click', () =>{
-            fetch('/api/data')
-            .then(response => response.json())
-            .then(data => {
-                GeneratedOTP = data.otp;
-                document.querySelector('#OTP').innerHTML = `Generated OTP: ${GeneratedOTP}`;
-                document.querySelector('#verify-section').style.display = 'block';
-                startTimer(30);
-            })
-        })
 
-     
 
     </script>
 </body>

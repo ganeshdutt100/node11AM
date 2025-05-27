@@ -14,7 +14,7 @@ function otpGenerator(length) {
 }
 
 app.get("/api/otp", (req, res) => {
-  let length = parseInt(process.env.Value_length);
+  let length = parseInt(process.env.OTP_length) || 6;
   let otp = otpGenerator(length);
 
   res.json({ otp: otp });
