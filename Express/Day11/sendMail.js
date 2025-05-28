@@ -17,15 +17,25 @@ const sendMail = async (req, res) => {
       const info = await transporter.sendMail({
         from: '"Ganesh Dutt" <ganeshdutt@gmail.com>',
         to: "trainerganeshdutt@gmail.com",
-        subject: "Hello ✔",
+        subject: "Greeting from my side",
         text: "Hello world?", // plain‑text body
-        html: "<b>Hello world?</b>", // HTML body
+        html: "<b>Hello Students </b>", // HTML body
       });
 
       console.log("Message sent:", info.messageId);
+      res.status(200).json({
+        success: true,
+        message: "Email sent successfully",
+        messageId: info.messageId,
+      });
     })();
   } catch (err) {
     console.error(err);
+    res.status(500).json({
+      success: false,
+      message: "Email not send",
+      messageId: info.messageId,
+    });
   }
 };
 module.exports = sendMail;
