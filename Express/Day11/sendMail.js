@@ -20,8 +20,7 @@ const sendMail = async (req, res) => {
         subject: "Greeting from my side",
         text: "Hello world?", // plain‑text body
         html: "<b>Hello Students </b>", // HTML body
-      });
-
+      })
       console.log("Message sent:", info.messageId);
       res.status(200).json({
         success: true,
