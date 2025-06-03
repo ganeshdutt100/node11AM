@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Search Student Data</h1>
+        <form method="GET" action="/">
+            <input type="text" name="name" value="<%= searchedName || '' %>" required>
+
+            <button type="submit">Search</button>
+        </form>
+
+        <% if(student){ %>
+            <div class="output">
+                <h2>Students Found </h2>
+
+                <p> <strong>Name : </strong>
+                    <%= student.name> %>
+                </p>
+                <p> <strong>Age : </strong>
+                    <%= student.age> %>
+                </p>
+                <p> <strong>Course : </strong>
+                    <%= student.course> %>
+                </p>
+                <p> <strong>Email : </strong>
+                    <%= student.email> %>
+                </p>
+
+            </div>
+            <%} else(searchedName) {%>
+                <p>Data not Found</p>
+                <% }  %>
+
+
+    </div>
+</body>
+
+</html>
