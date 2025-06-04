@@ -35,7 +35,7 @@ app.post("/add", (req, res) => {
   });
 });
 
-//show
+//show students
 app.get("/search", (req, res) => {
   const searchedName = req.query.name?.toLowerCase();
 
