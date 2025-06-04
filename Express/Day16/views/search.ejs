@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Search Student</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <h2>Search Student Data</h2>
+        <form method="GET" action="/search">
+            <input type="text" name="name" placeholder="Enter student name" value="<%= searchedName || '' %>"
+                required />
+            <button type="submit">Search</button>
+        </form>
+
+        <% if (student) { %>
+            <div class="result">
+                <h3>Student Found:</h3>
+                <p><strong>Name:</strong>
+                    <%= student.name %>
+                </p>
+                <p><strong>Age:</strong>
+                    <%= student.age %>
+                </p>
+                <p><strong>Course:</strong>
+                    <%= student.course %>
+                </p>
+                <p><strong>Email:</strong>
+                    <%= student.email %>
+                </p>
+            </div>
+            <% } else if (searchedName) { %>
+                <p class="error">No match for "<%= searchedName %>"</p>
+                <% } %>
+
+                    <a href="/add">Go to Add Page</a>
+    </div>
+</body>
+
+</html>

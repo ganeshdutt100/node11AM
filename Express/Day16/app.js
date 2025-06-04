@@ -1,0 +1,58 @@
+const express = require("express");
+const fs = require("fs");
+const path = require("path");
+
+const app = express();
+const port = 3000;
+
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
+
+const filePath = path.join(__dirname, "data", "students.json");
+
+// addFileShow
+app.get("/", (req, res) => {
+  res.render("add");
+});
+
+// Handle submit form
+
+app.post("/add", (req, res) => {
+  const { name, age, course, email } = req.body;
+
+  fs.readFile(filePath, "utf8", (err, data) => {
+    if (err) return res.send("Error reading file ");
+
+    const students = JSON.parse(data);
+    students.push({ name, age, course, email });
+
+    fs.writeFile(filePath, JSON.stringify(students, null), (err) => {
+      if (err) return res.send("Error data ");
+      res.render("add", { message: "Student added" });
+    });
+  });
+});
+
+//show
+app.get("/search", (req, res) => {
+  const searchedName = req.query.name?.toLowerCase();
+
+  fs.readFile(filePath, "utf8", (err, data) => {
+    if (err) return res.send("Error reading file");
+
+    const students = JSON.parse(data);
+    let student = null;
+
+    if (searchedName) {
+      student = students.find((s) => s.name.toLowerCase() === searchedName);
+    }
+
+    res.render("search", { student, searchedName });
+  });
+});
+
+app.get("/", (req, res) => {
+  res.render("/add");
+});
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
