@@ -1,1 +1,32 @@
-[{"name":"aman","age":"23","course":"fs","email":"aman2304@gmial.com"},{"name":"archna","age":"23","course":"fs","email":"archna2304@gmial.com"}]
+[
+  {
+    "name": "aman",
+    "age": "23",
+    "course": "fs",
+    "email": "aman2304@gmial.com"
+  },
+  {
+    "name": "archna",
+    "age": "23",
+    "course": "fs",
+    "email": "archna2304@gmial.com"
+  },
+  {
+    "name": "hamid",
+    "age": "25",
+    "course": "fs",
+    "email": "hamid@gmail.com"
+  },
+  {
+    "name": "hamid",
+    "age": "24",
+    "course": "fs",
+    "email": "gdutt2304@gmial.com"
+  },
+  {
+    "name": "aman",
+    "age": "24",
+    "course": "fs",
+    "email": "aman2304@gmial.com"
+  }
+]

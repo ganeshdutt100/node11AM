@@ -13,7 +13,7 @@ const filePath = path.join(__dirname, "data", "students.json");
 
 // addFileShow
 app.get("/", (req, res) => {
-  res.render("add", {message : ""});
+  res.render("add", { message: null });
 });
 
 // Handle submit form
@@ -27,7 +27,8 @@ app.post("/add", (req, res) => {
     const students = JSON.parse(data);
     students.push({ name, age, course, email });
 
-    fs.writeFile(filePath, JSON.stringify(students, null), (err) => {
+    // json("data", replacer, space);
+    fs.writeFile(filePath, JSON.stringify(students, null, 2), (err) => {
       if (err) return res.send("Error data ");
       res.render("add", { message: "Student added" });
     });
