@@ -13,7 +13,7 @@ const filePath = path.join(__dirname, "data", "students.json");
 
 // addFileShow
 app.get("/", (req, res) => {
-  res.render("add");
+  res.render("add", {message : ""});
 });
 
 // Handle submit form
