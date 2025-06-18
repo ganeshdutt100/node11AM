@@ -1,0 +1,119 @@
+📘 What is Schema Validation?
+
+MongoDB is schemaless by default, meaning documents can have any structure.
+But you can define rules (called validation schema) to enforce structure, data types, and required fields using JSON Schema.
+
+
+
+ 🧱 Example Scenario:
+
+Let’s say you are creating a collection to store student data.
+You want to ensure:
+
+ name must be a string
+ age must be a number
+ course is required
+ isActive must be a Boolean 
+
+
+
+ ✅ How to Create Schema Validation in MongoDB
+
+ 🔧 Use db.createCollection() with validator
+
+db.createCollection("students", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["name", "age", "course", "isActive"],
+      properties: {
+        name: {
+          bsonType: "string",
+          description: "Name must be a string and is required"
+        },
+        age: {
+          bsonType: "int",
+          minimum: 16,
+          maximum: 60,
+          description: "Age must be an integer between 16 and 60"
+        },
+        course: {
+          bsonType: "string",
+          description: "Course name must be a string"
+        },
+        isActive: {
+          bsonType: "bool",
+          description: "Active status must be a boolean"
+        }
+      }
+    }
+  },
+  validationLevel: "strict",     // "strict" or "moderate"
+  validationAction: "error"      // "error" or "warn"
+})
+
+
+
+
+ ✨ Now Try Inserting Valid Document:
+
+js
+db.students.insertOne({
+  name: "Ganesh",
+  age: 24,
+  course: "MongoDB",
+  isActive: true
+})
+// ✅ Success
+
+
+
+
+ ❌ Try Invalid Document:
+
+js
+db.students.insertOne({
+  name: "Ganesh",
+  age: "twenty",  // ❌ age is not integer
+  isActive: "yes" // ❌ not boolean
+})
+// ❌ Error due to schema validation
+
+
+
+
+ 🔁 Update or Add Validation to Existing Collection
+
+If the collection already exists, use:
+
+js
+db.runCommand({
+  collMod: "students",
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["name", "age", "course", "isActive"],
+      properties: {
+        name: { bsonType: "string" },
+        age: { bsonType: "int" },
+        course: { bsonType: "string" },
+        isActive: { bsonType: "bool" }
+      }
+    }
+  },
+  validationLevel: "strict",
+  validationAction: "error"
+})
+
+
+
+
+ 🧠 Benefits of Schema Validation
+
+ Prevents wrong data types
+ Ensures important fields are present
+ Helps avoid bugs in applications
+ Acts like a soft "table structure" in SQL
+
+
+
