@@ -1,20 +1,6 @@
 import React, { useState } from 'react'
-const courses ={
-  
-  fullstack: {
-    title:'fullstack',
-    description: ' fullstack the latest technologies in full-stack development, including front-end and back-end development.'
-  },
-  datascience: {
-    title:'Data_Science',
-    description: ' DataScienceLearn the latest technologies in full-stack development, including front-end and back-end development.'
-  },
-  digitalmarketing: {
-    title:'Digital_Marketing Development ',
-    description: ' Digital_Marketing Development Learn the latest technologies in full-stack development, including front-end and back-end development.'
-  },
- 
-}
+import { product } from './product'
+
 export const HeroSection = () => {
   const [selectCourses, setSelectCourses] = useState('fullstack')
   return (
@@ -29,9 +15,13 @@ export const HeroSection = () => {
     
     </div>   
 
-    <div className='text-center mt-5'>
-      <h2 className='text-2xl'>{courses[selectCourses].title}</h2>
-      <p>{courses[selectCourses].description}</p>
+    <div className='text-center mt-5 flex justify-center gap-4'>
+     {product[selectCourses].map((item)=>(
+     <div key={item.id} className='w-full h-32 bg-gray-900 text-white p-4'>
+      <h2 className='text-2xl'>{item.title}</h2>
+      <p>{item.description}</p>
+     </div>
+     ))}
     </div>
     </>
   )
