@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 const courses ={
   
+  fullstack: {
+    title:'fullstack',
+    description: ' fullstack the latest technologies in full-stack development, including front-end and back-end development.'
+  },
   datascience: {
     title:'Data_Science',
     description: ' DataScienceLearn the latest technologies in full-stack development, including front-end and back-end development.'
