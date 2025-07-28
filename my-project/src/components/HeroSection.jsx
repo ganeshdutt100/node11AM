@@ -17,7 +17,8 @@ export const HeroSection = () => {
 
     <div className='text-center mt-5 flex justify-center gap-4'>
      {product[selectCourses].map((item)=>(
-     <div key={item.id} className='w-full h-32 bg-gray-900 text-white p-4'>
+     <div key={item.id} className='w-full  bg-gray-900 text-white p-4'>
+        <img src={item.Image} alt={item.title} className='w-full h-24 object-contain' />
       <h2 className='text-2xl'>{item.title}</h2>
       <p>{item.description}</p>
      </div>
